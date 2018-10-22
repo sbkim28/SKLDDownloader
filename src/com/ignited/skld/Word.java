@@ -11,7 +11,7 @@ public class Word implements IWord{
     private boolean containsOldHangeul;
     private final List<Property> properties;
 
-    Word(int homonym, String word, boolean containsOldHangeul){
+    protected Word(int homonym, String word, boolean containsOldHangeul){
         this.homonym = homonym;
         this.word = word;
         this.containsOldHangeul = containsOldHangeul;
@@ -48,7 +48,7 @@ public class Word implements IWord{
                 '}';
     }
 
-    static class Property{
+    public static class Property{
         private String wordClass;
         private List<String> attributes;
         private List<Section> sections;

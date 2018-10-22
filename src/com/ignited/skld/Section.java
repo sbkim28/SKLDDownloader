@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Section {
+public class Section {
     private int sector;
     private List<Polysemy> polysemies;
 
@@ -33,7 +33,7 @@ class Section {
                 '}';
     }
 
-    static class Polysemy {
+    public static class Polysemy {
         private int index;
         private String meaning;
 
