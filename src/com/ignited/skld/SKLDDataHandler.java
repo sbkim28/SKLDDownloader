@@ -26,4 +26,10 @@ public class SKLDDataHandler {
         return new ArrayList<>(Arrays.asList(words));
     }
 
+    public static List<KoreanWord> load(InputStream is) {
+        Gson gson = new GsonBuilder().create();
+        KoreanWord[] words = gson.fromJson(new InputStreamReader(is), KoreanWord[].class);
+        return new ArrayList<>(Arrays.asList(words));
+    }
+
 }
