@@ -5,14 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class Word implements IWord{
+public class KoreanWord implements IWord{
 
     private final int homonym;
     private final String word;
     private final boolean containsOldHangeul;
     private final List<Property> properties;
 
-    private Word(Builder builder){
+    private KoreanWord(Builder builder){
         this.homonym = builder.homonym;
         this.word = builder.word;
         this.containsOldHangeul = builder.containsOldHangeul;
@@ -67,7 +67,7 @@ public class Word implements IWord{
         }
 
         private boolean isContainsOldHangeul(String word){
-            return Pattern.matches("^[ㄱ-ㅎ가-힣]*$", word);
+            return !Pattern.matches("^[ㄱ-ㅎ가-힣]*$", word);
         }
 
         public Builder addProperty(Property property){
@@ -75,8 +75,8 @@ public class Word implements IWord{
             return this;
         }
 
-        public Word build(){
-            return new Word(this);
+        public KoreanWord build(){
+            return new KoreanWord(this);
         }
     }
 

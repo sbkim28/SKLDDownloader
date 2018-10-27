@@ -25,7 +25,7 @@ public class SKLDReader{
     private static final String qNumNO = ".NumNO";
     private static final String qDefinition = ".Definition";
 
-    public static Word read(int i) throws IOException {
+    public static KoreanWord read(int i) throws IOException {
 
         Document doc = Jsoup.connect(link + i).get();
 
@@ -36,7 +36,7 @@ public class SKLDReader{
             return null;
         }
 
-        Word.Builder wb = getWord(raw);
+        KoreanWord.Builder wb = getWord(raw);
 
         Elements lists = doc.select(qList);
 
@@ -65,7 +65,7 @@ public class SKLDReader{
         return wb.build();
     }
 
-    private static Word.Builder getWord(String raw){
+    private static KoreanWord.Builder getWord(String raw){
         String word = raw.replaceAll("[-^ㆍ]","");
 
         int number = 1;
@@ -77,6 +77,6 @@ public class SKLDReader{
             word = word.substring(0, word.indexOf(strNum));
         }
 
-        return new Word.Builder().setWord(word).setHomonym(number);
+        return new KoreanWord.Builder().setWord(word).setHomonym(number);
     }
 }

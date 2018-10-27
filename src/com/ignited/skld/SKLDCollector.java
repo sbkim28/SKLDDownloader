@@ -9,14 +9,14 @@ public class SKLDCollector {
     // it changes continuously
     public static final int END_INDEX = 519208;
 
-    public static List<Word> collect() throws IOException {
+    public static List<KoreanWord> collect() throws IOException {
         return collect(1, END_INDEX);
     }
 
-    public static List<Word> collect(int start, int end) throws IOException{
-        List<Word> wordList = new ArrayList<>();
+    public static List<KoreanWord> collect(int start, int end) throws IOException{
+        List<KoreanWord> wordList = new ArrayList<>();
         for(int index = start;index<= end;++index){
-            Word word = SKLDReader.read(index);
+            KoreanWord word = SKLDReader.read(index);
             if(word != null) {
                 wordList.add(word);
             }

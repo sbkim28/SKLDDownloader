@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SKLDDataHandler {
 
-    public static void save(String path, List<Word> wordList) throws IOException {
+    public static void save(String path, List<KoreanWord> wordList) throws IOException {
         File file = new File(path);
         Writer writer = new FileWriter(file);
         Gson gson = new GsonBuilder().create();
@@ -18,11 +18,11 @@ public class SKLDDataHandler {
         writer.close();
     }
 
-    public static List<Word> load(String path) throws FileNotFoundException {
+    public static List<KoreanWord> load(String path) throws FileNotFoundException {
         File file = new File(path);
         Reader reader = new FileReader(file);
         Gson gson = new GsonBuilder().create();
-        Word[] words = gson.fromJson(reader, Word[].class);
+        KoreanWord[] words = gson.fromJson(reader, KoreanWord[].class);
         return new ArrayList<>(Arrays.asList(words));
     }
 
