@@ -3,19 +3,20 @@ package com.ignited.skld;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Word implements IWord{
 
-    private int homonym;
-    private String word;
-    private boolean containsOldHangeul;
+    private final int homonym;
+    private final String word;
+    private final boolean containsOldHangeul;
     private final List<Property> properties;
 
-    protected Word(int homonym, String word, boolean containsOldHangeul){
-        this.homonym = homonym;
-        this.word = word;
-        this.containsOldHangeul = containsOldHangeul;
-        properties = new ArrayList<>();
+    private Word(Builder builder){
+        this.homonym = builder.homonym;
+        this.word = builder.word;
+        this.containsOldHangeul = builder.containsOldHangeul;
+        this.properties = Collections.unmodifiableList(builder.properties);
     }
 
     public int getHomonym() {
@@ -30,12 +31,8 @@ public class Word implements IWord{
         return containsOldHangeul;
     }
 
-    void addProperty(Property property){
-        properties.add(property);
-    }
-
     public List<Property> getProperties() {
-        return Collections.unmodifiableList(properties);
+        return properties;
     }
 
     @Override
@@ -48,40 +45,40 @@ public class Word implements IWord{
                 '}';
     }
 
-    public static class Property{
-        private String wordClass;
-        private List<String> attributes;
-        private List<Section> sections;
+    public static final class Builder {
+        private int homonym;
+        private String word;
+        private boolean containsOldHangeul;
+        private final List<Property> properties;
 
-        Property(String wordClass, List<String> attributes) {
-            this.wordClass = wordClass;
-            this.attributes = attributes;
-            sections = new ArrayList<>();
+        public Builder() {
+            properties = new ArrayList<>();
         }
 
-        void addSection(Section section){
-            sections.add(section);
+        public Builder setHomonym(int homonym){
+            this.homonym = homonym;
+            return this;
         }
 
-        public String getWordClass() {
-            return wordClass;
+        public Builder setWord(String word){
+            this.word = word;
+            containsOldHangeul = isContainsOldHangeul(word);
+            return this;
         }
 
-        public List<String> getAttributes() {
-            return Collections.unmodifiableList(attributes);
+        private boolean isContainsOldHangeul(String word){
+            return Pattern.matches("^[ㄱ-ㅎ가-힣]*$", word);
         }
 
-        public List<Section> getSections() {
-            return Collections.unmodifiableList(sections);
+        public Builder addProperty(Property property){
+            properties.add(property);
+            return this;
         }
 
-        @Override
-        public String toString() {
-            return "Property{" +
-                    "wordClass='" + wordClass + '\'' +
-                    ", attribute=" + attributes +
-                    ", sections=" + sections +
-                    '}';
+        public Word build(){
+            return new Word(this);
         }
     }
+
+
 }
