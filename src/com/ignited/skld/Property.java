@@ -12,8 +12,8 @@ public class Property{
 
     private Property(Builder builder) {
         this.wordClass = builder.wordClass;
-        this.attributes = builder.attributes;
-        this.meanings = builder.meanings;
+        this.attributes = Collections.unmodifiableList(builder.attributes);
+        this.meanings = Collections.unmodifiableList(builder.meanings);
     }
 
     public String getWordClass() {
