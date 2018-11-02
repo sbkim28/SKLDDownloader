@@ -102,9 +102,6 @@ public class Property{
             return this;
         }
 
-        @Deprecated
-        public Builder next(){ return this;}
-
         /**
          * Add a meaning of the word.
          *
