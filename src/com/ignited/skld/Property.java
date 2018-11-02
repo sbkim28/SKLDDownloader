@@ -65,15 +65,12 @@ public class Property{
         private final List<String> attributes;
         private final List<String> meanings;
 
-        private final List<String> m;
-
         /**
          * Instantiates a new Builder.
          */
         public Builder() {
             attributes = new ArrayList<>();
             meanings = new ArrayList<>();
-            m = new ArrayList<>();
         }
 
         /**
@@ -116,7 +113,7 @@ public class Property{
          * @return this
          */
         public Builder addMeaning(String meaning){
-            m.add(meaning);
+            meanings.add(meaning);
             return this;
         }
 
