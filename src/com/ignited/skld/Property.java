@@ -1,9 +1,6 @@
 package com.ignited.skld;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -53,8 +50,8 @@ public class Property{
     public String toString() {
         return "Property{" +
                 "wordClass='" + wordClass + '\'' +
-                ", attributes=" + attributes +
-                ", meanings=" + meanings +
+                ", attributes=" + Arrays.toString(attributes) +
+                ", meanings=" + Arrays.toString(meanings) +
                 '}';
     }
 

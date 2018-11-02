@@ -1,6 +1,7 @@
 package com.ignited.skld;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -63,7 +64,7 @@ public class KoreanWord implements IWord{
                 "homonym=" + homonym +
                 ", word='" + word + '\'' +
                 ", containsOldHangeul=" + containsOldHangeul +
-                ", properties=" +  properties +
+                ", properties=" + Arrays.toString(properties) +
                 '}';
     }
 
