@@ -12,14 +12,15 @@ import java.util.List;
  * @author Ignited
  */
 public class Property{
+
     private final String wordClass;
-    private final List<String> attributes;
-    private final List<String> meanings;
+    private final String[] attributes;
+    private final String[] meanings;
 
     private Property(Builder builder) {
         this.wordClass = builder.wordClass;
-        this.attributes = Collections.unmodifiableList(builder.attributes);
-        this.meanings = Collections.unmodifiableList(builder.meanings);
+        this.attributes = builder.attributes.toArray(new String[0]);
+        this.meanings = builder.meanings.toArray(new String[0]);
     }
 
     /**
@@ -32,12 +33,20 @@ public class Property{
     }
 
     /**
-     * Gets the list of attributes.
+     * Gets the array of attributes.
      *
-     * @return the unmodifiable list of attributes
+     * @return the array of attributes
      */
-    public List<String> getAttributes() {
+    public String[] getAttributes() {
         return attributes;
+    }
+    /**
+     * Gets the array of meanings.
+     *
+     * @return the array of meanings
+     */
+    public String[] getMeanings() {
+        return meanings;
     }
 
     @Override
@@ -48,6 +57,7 @@ public class Property{
                 ", meanings=" + meanings +
                 '}';
     }
+
 
     /**
      * The Property Builder.

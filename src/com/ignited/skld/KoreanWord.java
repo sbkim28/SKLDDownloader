@@ -1,7 +1,6 @@
 package com.ignited.skld;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -15,13 +14,13 @@ public class KoreanWord implements IWord{
     private final int homonym;
     private final String word;
     private final boolean containsOldHangeul;
-    private final List<Property> properties;
+    private final Property[] properties;
 
     private KoreanWord(Builder builder){
         this.homonym = builder.homonym;
         this.word = builder.word;
         this.containsOldHangeul = builder.containsOldHangeul;
-        this.properties = Collections.unmodifiableList(builder.properties);
+        this.properties = builder.properties.toArray(new Property[0]);
     }
 
     /**
@@ -54,7 +53,7 @@ public class KoreanWord implements IWord{
      * @return the properties
      * @see com.ignited.skld.Property
      */
-    public List<Property> getProperties() {
+    public Property[] getProperties() {
         return properties;
     }
 
