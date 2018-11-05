@@ -55,7 +55,15 @@ public class Property{
                 '}';
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Property property = (Property) o;
+        return Objects.equals(wordClass, property.wordClass) &&
+                Arrays.equals(attributes, property.attributes) &&
+                Arrays.equals(meanings, property.meanings);
+    }
     /**
      * The Property Builder.
      * Instantiates a new Property
